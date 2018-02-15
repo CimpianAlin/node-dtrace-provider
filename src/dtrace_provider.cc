@@ -86,7 +86,8 @@ namespace node {
     // create a DTraceProbe object
     v8::Local<Function> klass =
         Nan::New<FunctionTemplate>(DTraceProbe::constructor_template)->GetFunction();
-    v8::Local<Object> pd = klass->NewInstance();
+    v8::Local<Object> pd =
+        klass->NewInstance(info.GetIsolate()->GetCurrentContext());
 
     // store in provider object
     DTraceProbe *probe = Nan::ObjectWrap::Unwrap<DTraceProbe>(pd->ToObject());
